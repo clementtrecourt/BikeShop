@@ -19,7 +19,7 @@
   <!-- header -->
   <nav class="navbar navbar-light bg-dark">
     <a class="navbar" href="/">
-      <img src="/bike-logo.svg" width="50" height="50" class="logo" alt="">
+      <img src="/images/bike-logo.svg" width="50" height="50" class="logo" alt="">
       The Bike Shop Experience
     </a>
   </nav>
@@ -45,25 +45,31 @@
       </tr>
     </thead>
     <tbody>
-      <% for(let i=0; i<dataBike.length; i++){ %>
+
+      <% for(let i=0; i<basketBike.length; i++){ %>
         <tr>
           <th scope="row">
             <%= i %>
           </th>
-          <td><img src=<%=dataBike[i].image %> class="img-fluid w-25" alt='' /></td>
+          <td><img src=<%=basketBike[i].image %> class="img-fluid w-25" alt='' /></td>
           <td>
-            <%= dataBike[i].name %>
+            <%= basketBike[i].name %>
 
           </td>
-          <td><input type="text" value=<%=dataBike[i].quantity %>><i
+          <td><input type="text" value='1'><i
               class="fa-solid fa-arrows-rotate text-primary border p-2 ml-2 border-primary rounded"></i></td>
           <td>
-            <%= dataBike[i].price %>€
+            <%= basketBike[i].price %>€
           </td>
           <td>
-            <%= dataBike[i].price * dataBike[i].quantity %>€
+            <%= basketBike[i].price * basketBike[i].quantity %>€
           </td>
-          <td><i class="fa-solid fa-trash text-primary border p-2 ml-2 border-primary rounded"></i></td>
+          <td>
+            <a href="/delete?position=<%=i%>" class="fa-solid fa-trash
+              text-primary
+              border p-2 ml-2 border-primary
+              rounded"></a>
+          </td>
         </tr>
         <% } %>
           <tr>
@@ -74,8 +80,8 @@
             <td>Total Basket</td>
             <td>
 
-              <% let total=0; for(let i=0; i<dataBike.length; i++){ total=(dataBike[i].price * dataBike[i].quantity) +
-                total } %>
+              <% let total=0; for(let i=0; i<basketBike.length; i++){ total=(basketBike[i].price *
+                basketBike[i].quantity) + total } %>
                 <%= total %>€
             </td>
             <td></td>

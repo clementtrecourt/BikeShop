@@ -25,6 +25,7 @@
     </a>
   </nav>
   <div id="picture-header">
+
   </div>
   <div class="">
     <div class="">
@@ -41,7 +42,9 @@
                   <h4>
                     <%= dataBike[i].price %>€
                   </h4>
-                  <a href="/shop"><button type="button" class="btn btn-outline-primary">Buy</button></a>
+                  <a
+                    href="/shop?name=<%= dataBike[i].name %>&price=<%= dataBike[i].price %>&image=<%= dataBike[i].image %>"><button
+                      type="button" class="btn btn-outline-primary">Buy</button></a>
                 </div>
 
               </div>
