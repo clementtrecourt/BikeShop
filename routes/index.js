@@ -31,6 +31,15 @@ router.get("/shop", function (req, res, next) {
   console.log("one", basketBike);
   res.render("shop", { title: "Express", basketBike, ref: bikeRef });
 });
+router.post("/updateShop", function (req, res, next) {
+  console.log("hello");
+  let position = req.body.position;
+  let newQuantity = req.body.quantity;
+  console.log("basketBike", basketBike[0]);
+  console.log("position", position);
+  basketBike[position].quantity = newQuantity;
+  res.render("shop", { basketBike });
+});
 router.get("/delete", function (req, res, next) {
   console.log(req.query.position);
   basketBike.splice(req.query.position, 1);

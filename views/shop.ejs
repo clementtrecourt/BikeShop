@@ -56,8 +56,14 @@
             <%= basketBike[i].name %>
 
           </td>
-          <td><input type="text" value='1'><i
-              class="fa-solid fa-arrows-rotate text-primary border p-2 ml-2 border-primary rounded"></i></td>
+          <td>
+            <form method="POST" action="/updateShop">
+              <input name="quantity" type="text" value=<%=basketBike[i].quantity %>>
+              <input name="position" type="hidden" value=<%=i %>>
+              <button type="submit" value="Submit"
+                class="fa-solid fa-arrows-rotate text-primary border p-2 ml-2 border-primary rounded"></button>
+            </form>
+          </td>
           <td>
             <%= basketBike[i].price %>€
           </td>
@@ -86,6 +92,16 @@
             </td>
             <td></td>
 
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><button class=" text-primary border p-2 ml-2 border-primary rounded">Checkout</button>
+            </td>
           </tr>
 
     </tbody>
