@@ -32,80 +32,83 @@
     </ol>
   </nav>
   <h1>Basket</h1>
-  <table class="table">
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Picture</th>
-        <th scope="col">Model</th>
-        <th scope="col">Quantity</th>
-        <th scope="col">Price</th>
-        <th scope="col">Total</th>
-        <th scope="col">Suppr</th>
-      </tr>
-    </thead>
-    <tbody>
-
-      <% for(let i=0; i<basketBike.length; i++){ %>
+  <% if(basketBike.length !=0){ %>
+    <table class="table">
+      <thead class="thead-dark">
         <tr>
-          <th scope="row">
-            <%= i %>
-          </th>
-          <td><img src=<%=basketBike[i].image %> class="img-fluid w-25" alt='' /></td>
-          <td>
-            <%= basketBike[i].name %>
+          <th scope="col">#</th>
+          <th scope="col">Picture</th>
+          <th scope="col">Model</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Price</th>
+          <th scope="col">Total</th>
+          <th scope="col">Suppr</th>
+        </tr>
+      </thead>
+      <tbody>
 
-          </td>
-          <td>
-            <form method="POST" action="/updateShop">
-              <input name="quantity" type="text" value=<%=basketBike[i].quantity %>>
-              <input name="position" type="hidden" value=<%=i %>>
-              <button type="submit" value="Submit"
-                class="fa-solid fa-arrows-rotate text-primary border p-2 ml-2 border-primary rounded"></button>
-            </form>
-          </td>
-          <td>
-            <%= basketBike[i].price %>€
-          </td>
-          <td>
-            <%= basketBike[i].price * basketBike[i].quantity %>€
-          </td>
-          <td>
-            <a href="/delete?position=<%=i%>" class="fa-solid fa-trash
+        <% for(let i=0; i<basketBike.length; i++){ %>
+          <tr>
+            <th scope="row">
+              <%= i %>
+            </th>
+            <td><img src=<%=basketBike[i].image %> class="img-fluid w-25" alt='' /></td>
+            <td>
+              <%= basketBike[i].name %>
+
+            </td>
+            <td>
+              <form method="POST" action="/updateShop">
+                <input name="quantity" type="text" value=<%=basketBike[i].quantity %>>
+                <input name="position" type="hidden" value=<%=i %>>
+                <button type="submit" value="Submit"
+                  class="fa-solid fa-arrows-rotate text-primary border p-2 ml-2 border-primary rounded"></button>
+              </form>
+            </td>
+            <td>
+              <%= basketBike[i].price %>€
+            </td>
+            <td>
+              <%= basketBike[i].price * basketBike[i].quantity %>€
+            </td>
+            <td>
+              <a href="/delete?position=<%=i%>" class="fa-solid fa-trash
               text-primary
               border p-2 ml-2 border-primary
               rounded"></a>
-          </td>
-        </tr>
-        <% } %>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>Total Basket</td>
-            <td>
-
-              <% let total=0; for(let i=0; i<basketBike.length; i++){ total=(basketBike[i].price *
-                basketBike[i].quantity) + total } %>
-                <%= total %>€
-            </td>
-            <td></td>
-
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td><button class=" text-primary border p-2 ml-2 border-primary rounded">Checkout</button>
             </td>
           </tr>
+          <% } %>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>Total Basket</td>
+              <td>
 
-    </tbody>
-  </table>
+                <% let total=0; for(let i=0; i<basketBike.length; i++){ total=(basketBike[i].price *
+                  basketBike[i].quantity) + total } %>
+                  <%= total %>€
+              </td>
+              <td></td>
+
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td><button class=" text-primary border p-2 ml-2 border-primary rounded">Checkout</button>
+              </td>
+            </tr>
+            <%}else{%>
+              <p>No article in the Basket</p>
+              <%}%>
+      </tbody>
+    </table>
 
 
 
@@ -113,16 +116,16 @@
 
 
 
-  <!-- scripts -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
+    <!-- scripts -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"></script>
 
 </body>
 
