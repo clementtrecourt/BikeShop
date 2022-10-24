@@ -11,6 +11,7 @@
   <link href="https://fonts.googleapis.com/css?family=Darker+Grotesque&display=swap" rel="stylesheet">
   <title>BikeShop - Shop</title>
   <script src="https://kit.fontawesome.com/a420c910a6.js" crossorigin="anonymous"></script>
+  <script src="https://js.stripe.com/v3/"></script>
 
 </head>
 
@@ -101,8 +102,13 @@
               <td></td>
               <td></td>
               <td></td>
-              <td><button class=" text-primary border p-2 ml-2 border-primary rounded">Checkout</button>
+              <td>
+                <form action="/create-checkout-session" method="POST">
+                  <button class=" text-primary border p-2 ml-2 border-primary rounded" type="submit"
+                    id="checkout-button">Checkout</button>
+                </form>
               </td>
+
             </tr>
             <%}else{%>
               <p>No article in the Basket</p>

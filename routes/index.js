@@ -1,6 +1,9 @@
 var express = require("express");
 var router = express.Router();
-
+const stripe = require("stripe")(
+  "sk_test_51IbPPsG7aOX6S6V1nJ7Yq3xnWWSTcX1hGYsxymx1JyGDSjGsu87KYO43EqLJ5QhT22vVxErrjzLSdfzAjUbwUL2I00LEznhtV0"
+);
+const YOUR_DOMAIN = "http://localhost:3000/";
 let dataBike = [
   {
     name: "BIKO45",
@@ -72,5 +75,32 @@ router.get("/delete", function (req, res, next) {
   req.session.basketBike.splice(req.query.position, 1);
   console.log(req.session.basketBike);
   res.render("shop", { basketBike: req.session.basketBike });
+});
+router.post("/create-checkout-session", async (req, res) => {
+  let stripeItems = [];
+  for (var i = 0; i < req.session.basketBike.length; i++) {
+    stripeItems.push({
+      price_data: {
+        currency: "eur",
+        product_data: {
+          name: req.session.basketBike[i].name,
+        },
+        unit_amount: req.session.basketBike[i].price * 100,
+      },
+      quantity: req.session.basketBike[i].quantity,
+    });
+  }
+  const session = await stripe.checkout.sessions.create({
+    payment_method_types: ["card"],
+    line_items: stripeItems,
+    mode: "payment",
+    success_url: "http://localhost:3000/success",
+    cancel_url: "http://localhost:3000/",
+  });
+
+  res.redirect(303, session.url);
+});
+router.get("/success", function (req, res, next) {
+  res.render("success", { title: "Express" });
 });
 module.exports = router;
