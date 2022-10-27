@@ -6,21 +6,21 @@ const stripe = require("stripe")(
 const YOUR_DOMAIN = "http://localhost:3000/";
 let dataBike = [
   {
-    name: "BIKO45",
+    name: "BMW S1000RR",
     image: "/images/bike-1.jpg",
-    price: "536",
+    price: "24000",
     quantity: "1",
   },
   {
-    name: "ZOOK7",
+    name: "Yamaha YZF R1",
     image: "/images/bike-2.jpg",
-    price: "642",
+    price: "14000",
     quantity: "1",
   },
   {
-    name: "LIKO91",
+    name: "Yamaha YZF R6",
     image: "/images/bike-3.jpg",
-    price: "232",
+    price: "18000",
     quantity: "1",
   },
 ];
@@ -94,8 +94,8 @@ router.post("/create-checkout-session", async (req, res) => {
     payment_method_types: ["card"],
     line_items: stripeItems,
     mode: "payment",
-    success_url: "http://localhost:3000/success",
-    cancel_url: "http://localhost:3000/",
+    success_url: "https://sheltered-reef-94904.herokuapp.com/success",
+    cancel_url: "https://sheltered-reef-94904.herokuapp.com/",
   });
 
   res.redirect(303, session.url);
